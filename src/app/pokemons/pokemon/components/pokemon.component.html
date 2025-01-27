@@ -1,0 +1,33 @@
+<h1>Pokémon</h1>
+
+<h2>{{nombre}}</h2>
+<dl>
+    <td>No. Pokedex</td>
+    <dd>{{noPokedex}}</dd>
+    
+    <td>Tipo 1:</td>
+    <dd>{{tipo1}}</dd>
+
+    <td>Tipo 2:</td>
+    <dd>{{tipo2}}</dd>
+
+    <td>Ataque físico:</td>
+    <dd>{{ataqueFis}}</dd>
+    
+    <td>Ataque especial:</td>
+    <dd>{{ataqueSp}}</dd>
+
+    <td>Entrenador:</td>
+    <dd>{{entrenador}}</dd>
+
+    <td>Resumen:</td>
+    <dd>{{resumen()}}</dd>
+</dl>
+<button *ngIf="nombre==='Bulbasaur'"
+    class="btn btn-primary mx-2" (click)="cambiarPoke()">Cambiar Pokemon</button>
+
+<button *ngIf="entrenador==='Red'"
+    class="btn btn-primary" (click)="cambiarEntrenador()">Cambiar Entrenador</button>
+
+<br>
+<button class="btn btn-danger mx-2 my-2" (click)="reset()">Reset</button>

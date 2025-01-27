@@ -1,0 +1,15 @@
+<div *ngIf="deletedPkmn; else nothingWasDeleted">
+    <h3>Pokemon borrado <small class="text-danger">{{deletedPkmn}}</small></h3>
+</div>
+<ng-template #nothingWasDeleted> <!-- # es una referencia local-->
+    <h3>No ha borrado nada</h3>
+</ng-template>
+
+<button *ngIf="pokemons.length>0" 
+    class="btn btn-outline-danger" (click)="removeLastPokemon()">Borrar ultimo poke</button>
+
+<ul class="mt-2 list-group">
+    <li *ngFor="let pokemon of pokemons" class="list-group-item">
+        {{pokemon}}
+    </li>
+</ul>
