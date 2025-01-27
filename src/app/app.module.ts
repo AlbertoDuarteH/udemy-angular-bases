@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { CounterModule } from './counter/counter.module';
 import { PokemonsModule } from './pokemons/pokemons.module';
+import { DBZModule } from './dbz/dbz.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     CounterModule,
-    PokemonsModule
+    PokemonsModule,
+    DBZModule
 ],
   providers: [],
   bootstrap: [AppComponent]
