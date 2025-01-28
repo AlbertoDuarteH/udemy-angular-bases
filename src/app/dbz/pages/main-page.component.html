@@ -2,7 +2,10 @@
 <hr>
 <div class="row">
     <div class="col">
-        <app-dbz-listadoDBZ></app-dbz-listadoDBZ>
+        <app-dbz-listadoDBZ [characterList]="characters"></app-dbz-listadoDBZ>
+        <!--El [characterList]="characters" es la forma en que se pueden pasar propeidades de un modulo
+        padre a uno hijo, esto va a ser super encesario para pasar informacion entre componentes
+        informacion entre componentes-->
     </div>
     <div class="col">
         <app-dbz-formularioDBZ></app-dbz-formularioDBZ>
