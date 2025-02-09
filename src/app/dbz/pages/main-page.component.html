@@ -2,12 +2,34 @@
 <hr>
 <div class="row">
     <div class="col">
-        <app-dbz-listadoDBZ [characterList]="characters"></app-dbz-listadoDBZ>
-        <!--El [characterList]="characters" es la forma en que se pueden pasar propeidades de un modulo
-        padre a uno hijo, esto va a ser super encesario para pasar informacion entre componentes
+        <!-- actualizado en el selector sigueinte con la funcion para eliminar por uudi -->
+        <!--
+        <app-dbz-listadoDBZ 
+            [characterListHijo]="dbzService.carterListPadre"
+            (onNewIndexHijo)="dbzService.onNewIndexDeletePadre($event)"
+            ></app-dbz-listadoDBZ>
+        -->
+        <!--El [characterListHijo]="carterListPadre" es la forma en que se pueden pasar propeidades de un modulo
+        padre a uno hijo, esto va a ser super necesario para pasar informacion entre componentes
         informacion entre componentes-->
+        <app-dbz-listadoDBZ 
+            [characterListHijo]="getCaracters()"
+            (deleteUUIDHijo)="deleteCharacter($event)">
+        </app-dbz-listadoDBZ>
     </div>
     <div class="col">
-        <app-dbz-formularioDBZ></app-dbz-formularioDBZ>
+
+        <app-dbz-formularioDBZ (newCharacterHijo)="addNewCharater($event)"></app-dbz-formularioDBZ>
+        <!--
+            Est se lee de la siguente manera, cuando yo como componente hijo emita un evento llamado onNewCharacterHijo
+            entocnes el compoennte padre ¿que deberia hacer? ... Aqui se usa el méstodo definido en el 
+            componente padre onNewCharacterPadre
+
+            $event es un nombre especializado y especifico que Angular sabe el valor que se está emitiendo
+            en este caso se está emitiendo un objeto de tipo Character
+
+            mas formalmente $event es un objeto de tipo Event, pero en este caso se sabe que se está emitiendo un objeto
+            de tipo Character.
+        -->
     </div>
 </div>

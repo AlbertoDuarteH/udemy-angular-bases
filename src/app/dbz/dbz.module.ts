@@ -1,7 +1,8 @@
-import { Component, NgModule } from "@angular/core";
-import { NgModel } from "@angular/forms";
-import { MainPaigeDBZComponent } from "./pages/main-page.component";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+
+import { MainPaigeDBZComponent } from "./pages/main-page.component";
 import { ListadoBDZComponent } from "./components/Listado/listado.component";
 import { FormularioDBZComponent } from "./components/formulario/formulario.component";
 
@@ -12,10 +13,11 @@ import { FormularioDBZComponent } from "./components/formulario/formulario.compo
         FormularioDBZComponent
     ],
     exports:[
-        MainPaigeDBZComponent
+        MainPaigeDBZComponent 
     ],
     imports:[
-        CommonModule
+        CommonModule,
+        FormsModule
     ]
 })
 export class DBZModule{

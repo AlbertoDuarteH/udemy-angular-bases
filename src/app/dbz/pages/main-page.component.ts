@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { DbzService } from "../services/dbz.service";
 import { Character } from "../interfaces/character";
 
 
@@ -9,15 +10,18 @@ import { Character } from "../interfaces/character";
     standalone: false,
 })
 export class MainPaigeDBZComponent{
-    public characters: Character[] = [{
-        name:'Kriling',
-        power:1000
-    },{
-        name:'Goku',
-        power:9500
-    },{
-        name:'Vegeta',
-        power:7500
-    }];
-    
+
+    constructor(private dbzService: DbzService){}  //esta es la forma en que se realiza la inyeccion de dependencia
+
+    getCaracters():Character[] {
+        return [...this.dbzService.carterListPadre]; //esto es para clonarlo, pasar  como nuevo objeto un clon
+    }
+
+    addNewCharater(character:Character):void{
+        this.dbzService.onNewCharacterPadre(character);
+    }
+
+    deleteCharacter(id:string):void{
+        this.dbzService.deleteByUUIDPadre(id);
+    }
 }

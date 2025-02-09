@@ -1,6 +1,78 @@
 <h4>Agregar personaje</h4>
+<!--
+Hay varias formas de agregar el valor en el input desde la prodiedad character de la clase 
+FormularioDBZComponent
+1. Usando el atributo value
 <form class="row">
-    <input type="text" class="form-control mt-2" placeholder="Nombre" />
-    <input type="number" class="form-control mt-2" placeholder="Poder" />
+    <input type="text" [value]="character.name" class="form-control mt-2" placeholder="Nombre" />
+    <input type="number" [value]="character.power" class="form-control mt-2" placeholder="Poder" />
     <button type="submit" class="btn btn-primary mt-2" >Agregar</button>
 </form>
+
+Es necesario indicar que cuando queremos ahcer referencias a propiedades de la clase 
+se utilizan los corchete [] y el nombre de la propiedad entre comillas dobles.
+
+Por otro lado cuando hacemos referencia a eventos de la clase se utilizan los parentesis ()
+
+<form class="row">
+    <input type="text" [value]="character.name" class="form-control mt-2" placeholder="Nombre" />
+    <input type="number" [value]="character.power" 
+        (click)="clicDbz()"
+        class="form-control mt-2" placeholder="Poder" />
+    <button type="submit" class="btn btn-primary mt-2" >Agregar</button>
+</form>
+
+Ahora bien cuando utilizamos la notacion [()] conocida como caja de banana, estamos haciendo
+referencia a una propiedad y un evento al mismo tiempo, es decir estamos haciendo un two way data binding
+
+con Angular [(ngModel)]="character.name" estamos haciendo referencia a la propiedad name de la clase
+para poder usarlo sin errores es necesario importer el module FormsModule de @angular/forms y colocarlo
+en los imports del modulo que contiene el componente dbz.module.ts
+
+se agrega el atributo name porque si no, Angular manda el sigueinte error:
+ERROR RuntimeError: NG01352: If ngModel is used within a form tag, either the name attribute must be set or the form
+    control must be defined as 'standalone' in ngModelOptions.
+
+    Example 1: <input [(ngModel)]="person.firstName" name="first">
+    Example 2: <input [(ngModel)]="person.firstName" [ngModelOptions]="{standalone: true}">
+
+El atributo name es típico de los formularios HTML y es necesario para que Angular pueda identificar
+el input y poder hacer el two way data binding
+-->
+
+<form class="row" (ngSubmit)="emitCharacter()">
+<!-- El ngSubmit es un evento que se dispara cuando se hace submit en el formulario
+    en este caso se esta llamando al metodo emitCharacter() que se encuentra en la clase
+    FormularioDBZComponent
+-->
+    <input type="text" 
+        [(ngModel)]="character.name"
+        name="name" 
+        class="form-control mt-2" 
+        placeholder="Nombre" />
+
+    <input type="number" 
+        [(ngModel)]="character.power"
+        name="power" 
+        class="form-control mt-2" 
+        placeholder="Poder" />
+
+
+    <!--Por el momento el boton no tendra funcionalidad en el submit, si no en el click
+    <button type="submit" class="btn btn-primary mt-2" (click)="emitCharacter()">Agregar</button>
+-->
+    <button type="submit" class="btn btn-primary mt-2">Agregar</button>
+
+        <!-- pre es un elemento de bootstrap, caracter es el atibuto character de la clase
+            y se esta usando el pipe json para mostrar el objeto en formato json
+            
+            el pipe es un filtro que se puede usar en Angular para transformar la data
+            en este caso se esta usando el pipe json para mostrar el objeto en formato json
+        -->
+    
+    <!--<pre>{{ character | json }}</pre> -->
+    <!-- EL uso de prep aqui es solo como ejemplo para que enla vista se peuda ver 
+        el valor actual de cada elemento del atributo character definido en la clase 
+    -->
+</form>
+

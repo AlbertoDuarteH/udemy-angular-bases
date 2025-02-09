@@ -1,8 +1,37 @@
 <h4>Listado</h4>
-<ul class="list-group">
-    <li *ngFor="let character of characterList" class="list-group-item mt-2">
-        <span>{{character.name}} - </span>
-        <strong>Power </strong>
-        <span>{{character.power}}</span>
-    </li>
-</ul>
+    <ul class="list-group">
+    <!--
+        Extension del ngFor: el objeto index ya esta siendo
+        definido por nuestro ngFor, solamente se está extrayendo para su uso en el lsitado, pero
+        asi como se peude extraer el index, tambien hay otrosobjetos como el first, last, odd, even
+    -->
+        <li *ngFor="
+                let character of characterListHijo; 
+                let i= index;
+                let esPrimero = first;
+                let esUltimo = last;
+                let esImpar = odd;
+                let esPar = even;
+            " 
+            class="list-group-item d-flex justify-content-between align-items-center" 
+            [ngClass]="{
+                    'list-group-item-success': esPrimero,
+                    'list-group-item-danger': esUltimo}">
+            <div>
+    <!--
+    Espero que por las separaciones no se pierda el sentido; aqui lo relevante es el uso de
+    [ngClass]   que es una directiva que nos permite agregar clases de forma dinamica a un elemento
+                en este caso estamos agregando la clase list-group-item-success si esPrimero es true
+                es decir, si es el primer elemento de la lista y list-group-item-danger si es el ultimo
+    -->
+                <span>{{i+1}} </span>
+                <span>{{character.name}} - </span>
+                <strong>Power </strong>
+                <span>{{character.power}}</span>
+            </div>
+            <div>
+                <!--<button class="btn btn-warning" (click)="onDeleteCharacterHijo(i)">W</button>-->
+                <button class="btn btn-danger" (click)="onDeleteByUUIDHijo(character.id)">X</button>
+            </div>
+        </li>
+    </ul>
